@@ -1,19 +1,40 @@
 'use strict';
 
+import { game } from './game.js';
+
+const main = 'main';
+
 export const menu = {
-    element: document.querySelector('.menu'),
-
-    resetButton: document.querySelector('.menu-button'),
-
-    show() {
-        this.element.classList.remove('hidden');
+    element: {
+        main: document.querySelector('.main'),
+        pause: document.querySelector('.pause'),
+        gameOver: document.querySelector('.game-over'),
+    },
+    
+    button: {
+        main: document.querySelector('.main .button'),
+        pause: document.querySelector('.pause .button'),
+        gameOver: document.querySelector('.game-over .button'),
     },
 
-    hide() {
-        this.element.classList.add('hidden');
+    show(type) {
+        menu['element'][type].classList.remove('hidden');
+    },
+
+    hide(type) {
+        this['element'][type].classList.add('hidden');
     }
 }
 
-menu.resetButton.addEventListener('click', () => {
+menu.button.main.addEventListener('click', () => {
+    game.start();
+    menu.hide(main);
+});
+
+menu.button.pause.addEventListener('click', () => {
+    game.unpause();
+});
+
+menu.button.gameOver.addEventListener('click', () => {
     window.location.reload(false);
 });

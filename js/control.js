@@ -1,6 +1,7 @@
 'use strict';
 
 import { snake } from './snake.js';
+import { game } from './game.js';
 
 export function checkControl() {
     document.addEventListener('keydown', (e) => {
@@ -15,3 +16,11 @@ export function checkControl() {
         }
     }, { once : true });
 }
+
+document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Escape' || e.key === 'p') && !game.isPaused && game.isActive) {
+        game.pause();
+    } else if ((e.key === 'Escape' || e.key === 'p') && game.isPaused) {
+        game.unpause();
+    }
+});

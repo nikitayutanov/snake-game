@@ -6,30 +6,56 @@ import { food } from './food.js';
 import { checkControl } from './control.js';
 import { menu } from './menu.js';
 
-field.setGrid();
+const pause = 'pause';
+const gameOver = 'gameOver';
 
-function main() {
-    update();
+export const game = {
+    isActive: false,
+    isPaused: false,
 
-    if (snake.isCrashed) {
-        menu.show();
-        clearInterval(game);
-        return;
-    };
-    
-    draw();
+    loop() {
+        this.update();
+
+        if (snake.isCrashed) {
+            menu.show(gameOver);
+            this.stop();
+            return;
+        };
+        
+        this.draw();
+    },
+
+    update() {
+        checkControl();
+        snake.update();
+        food.update();
+    },
+
+    draw() {
+        field.clear();
+        snake.draw();
+        food.draw();
+    },
+
+    start() {
+        this.interval = setInterval(this.loop.bind(this), 1000);
+        this.isActive = true;
+    },
+
+    stop() {
+        clearInterval(this.interval);
+        this.isActive = false;
+    },
+
+    pause() {
+        this.stop();
+        menu.show(pause);
+        this.isPaused = true;
+    },
+
+    unpause() {
+        this.start();
+        menu.hide(pause);
+        this.isPaused = false;
+    }
 }
-
-function draw() {
-    field.clear();
-    snake.draw();
-    food.draw();
-};
-
-function update() {
-    checkControl();
-    snake.update();
-    food.update();
-}
-
-const game = setInterval(main, 250);
