@@ -1,8 +1,8 @@
 'use strict';
 
+import { food } from './food.js';
 import { game } from './game.js';
-
-const main = 'main';
+import { snake } from './snake.js';
 
 export const menu = {
     element: {
@@ -21,14 +21,15 @@ export const menu = {
         menu['element'][type].classList.remove('hidden');
     },
 
-    hide(type) {
-        this['element'][type].classList.add('hidden');
+    hide() {
+        document.querySelector('.menu:not(.hidden)').classList.add('hidden');
     }
 }
 
 menu.button.main.addEventListener('click', () => {
+    snake.reset();
     game.start();
-    menu.hide(main);
+    menu.hide();
 });
 
 menu.button.pause.addEventListener('click', () => {
@@ -36,5 +37,8 @@ menu.button.pause.addEventListener('click', () => {
 });
 
 menu.button.gameOver.addEventListener('click', () => {
-    window.location.reload(false);
+    snake.reset();
+    food.reset();
+    game.start();
+    menu.hide();
 });

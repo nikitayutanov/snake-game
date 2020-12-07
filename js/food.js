@@ -7,6 +7,10 @@ export const food = {
     className: 'food',
     position: { x: 0, y: 0 },
 
+    reset() {
+        field.hasFood = false;
+    },
+
     update() {
         if (!field.hasFood) {
             this.position = getRandomPos();

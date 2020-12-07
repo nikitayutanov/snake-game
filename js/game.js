@@ -55,7 +55,7 @@ export const game = {
 
     unpause() {
         this.start();
-        menu.hide(pause);
+        menu.hide();
         this.isPaused = false;
     }
 }

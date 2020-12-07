@@ -7,11 +7,14 @@ const midOfField = Math.round(field.size / 2);
 
 export const snake = {
     className: 'snake',
-    body: [
-        { x: midOfField, y: midOfField }
-    ],
-    moveDirection: 'right',
-    isCrashed: false,
+
+    reset() {
+        this.body = [
+            { x: midOfField, y: midOfField }
+        ];
+        this.moveDirection = 'right';
+        this.isCrashed = false;
+    },
 
     draw() {
         for (const element of this.body) {
