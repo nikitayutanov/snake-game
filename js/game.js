@@ -5,6 +5,7 @@ import { snake } from './snake.js';
 import { food } from './food.js';
 import { checkControl } from './control.js';
 import { menu } from './menu.js';
+import { score } from './score.js';
 
 const pause = 'pause';
 const gameOver = 'gameOver';
@@ -35,10 +36,11 @@ export const game = {
         field.clear();
         snake.draw();
         food.draw();
+        score.draw();
     },
 
     start() {
-        this.interval = setInterval(this.loop.bind(this), 1000);
+        this.interval = setInterval(this.loop.bind(this), 500);
         this.isActive = true;
     },
 

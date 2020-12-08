@@ -3,6 +3,7 @@
 import { food } from './food.js';
 import { game } from './game.js';
 import { snake } from './snake.js';
+import { score } from './score.js';
 
 export const menu = {
     element: {
@@ -28,6 +29,7 @@ export const menu = {
 
 menu.button.main.addEventListener('click', () => {
     snake.reset();
+    score.reset();
     game.start();
     menu.hide();
 });
@@ -39,6 +41,7 @@ menu.button.pause.addEventListener('click', () => {
 menu.button.gameOver.addEventListener('click', () => {
     snake.reset();
     food.reset();
+    score.reset();
     game.start();
     menu.hide();
 });

@@ -26,6 +26,7 @@ p {
     height: 100vmin;
     display: grid;
     background-color: #FFEF9F;
+    position: relative;
 }
 
 .snake, .food {
@@ -53,7 +54,7 @@ p {
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, .5);
-    z-index: 2;
+    z-index: 3;
 }
 
 .hidden {
@@ -91,7 +92,19 @@ p {
     background-color: #FFD6E0;
 }
 
-.title {
+.main .title {
     font-size: 2rem;
     color: #000;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.score {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #526760;
 }

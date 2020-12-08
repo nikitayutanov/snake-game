@@ -2,6 +2,7 @@
 
 import { field } from './field.js';
 import { food } from './food.js';
+import { score } from './score.js';
 
 const midOfField = Math.round(field.size / 2);
 
@@ -38,6 +39,7 @@ export const snake = {
         }
 
         if (this.isOnFood()) {
+            score.counter++;
             field.hasFood = false;
         } else {
             this.body.pop();
